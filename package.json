@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "build": "tsc && npm start",
-    "clean": "rimraf ./dist",
-    "dev": "ts-node src/index.ts"
+    "build": "npm run clean && tsc && npm run hbscopy && npm run public",
+    "dev": "ts-node src/index.ts",
+    "public": "ncp ./src/public/ ./dist/public/",
+    "hbscopy": "ncp ./src/views/ ./dist/views/",
+    "clean": "rimraf ./dist"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +24,13 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
+    "handlebars": "^4.7.6",
     "mongoose": "^5.10.0",
     "morgan": "^1.10.0",
+    "ncp": "^2.0.0",
     "rimraf": "^3.0.2"
   }
 }
